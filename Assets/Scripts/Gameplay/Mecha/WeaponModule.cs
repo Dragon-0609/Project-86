@@ -238,6 +238,24 @@ namespace Gameplay.Mecha
             
         }
 
+        public IEnumerator ShootHoldUnlimited(Func<bool> canShoot)
+        {
+            float fireRate = 1 / ammo.fireRate;
+            while (true)
+            {
+                if (!canShoot())
+                {
+                    yield return new WaitForSeconds(1f);
+                    continue;
+                }
+
+                _lastShotTime = Time.time;
+                Shoot(cameraTransform);
+                PlayBulletSound();
+                yield return new WaitForSeconds(fireRate);
+            }
+        }
+
 
         private void OnFire()
         {

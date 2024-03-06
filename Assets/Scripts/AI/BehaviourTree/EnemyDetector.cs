@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
 using Gameplay.Units;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,18 +14,20 @@ namespace AI.BehaviourTree
         [Header("Settings")]
         [SerializeField] private Faction enemyFaction;
         [SerializeField] private float idealDistance = 10f;
-        [SerializeField] private float fieldOfView = 90f;
-        [SerializeField] private float detectionRadius = 20f;
+        [SerializeField] public float fieldOfView = 90f;
+        [SerializeField] public float detectionRadius = 20f;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float detectionRate = 0.5f;
 
-        [SerializeField] private Transform detectionPoint;
+        [SerializeField] public Transform detectionPoint;
         
         [Header("Events")]
         public UnityEvent<Unit> onTargetChanged;
 
         private List<Unit> _units;
-        
+
+        [Header("Debug")] public bool showVision;
+        public Color color = new Color(1f, 0, 0, 0.3f);
         private Unit _target;
         
         private Unit Target
@@ -99,5 +102,6 @@ namespace AI.BehaviourTree
 
             return -1;
         }
+
     }
 }

@@ -86,6 +86,7 @@ namespace Gameplay.Units
             get => _target;
             set
             {
+                if (value == _target) return;
                 _target = value;
                 onTargetChanged?.Invoke(_target);
                 _target?.Unit.onUnitDeath.AddListener((_) => Target = null);
