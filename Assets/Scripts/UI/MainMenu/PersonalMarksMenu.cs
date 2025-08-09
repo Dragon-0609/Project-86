@@ -1,4 +1,5 @@
 using System;
+using Armament.MainMenu;
 using ScriptableObjects.Skins;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace UI.MainMenu
     {
         [SerializeField] private Transform container;
         [SerializeField] private GameObject pmPrefab;
-
+        [SerializeField] private ArmamentSelectionManager ArmamentSelection;
+        
         private JuggConfigSO _juggConfigSo;
 
 
@@ -36,6 +38,9 @@ namespace UI.MainMenu
 
             foreach (var personalMarkSo in personalMarkSos)
                 CreateCell(personalMarkSo);
+            
+            ArmamentSelection.OnOpened();
+            
             gameObject.SetActive(true);
             
            
@@ -48,6 +53,8 @@ namespace UI.MainMenu
             {
                 Destroy(child.gameObject);
             }
+
+            ArmamentSelection.OnClosed();
         }
     }
 }
