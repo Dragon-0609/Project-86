@@ -7,6 +7,7 @@ namespace Armament.MainMenu
 		public static MenuEvents Instance;
 
 		public event Action<TabSwitcher> OnTabChanged;
+		public event Action OnChangedArmament;
 		
 		private void Awake()
 		{
@@ -21,6 +22,11 @@ namespace Armament.MainMenu
 		public void FireOnTabChanged(TabSwitcher tab)
 		{
 			OnTabChanged?.Invoke(tab);
+		}
+
+		public void FireOnChangedArmament()
+		{
+			OnChangedArmament?.Invoke();
 		}
 	}
 }

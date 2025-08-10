@@ -41,12 +41,12 @@ namespace Armament.MainMenu
 
 		private void OnEnable()
 		{
-			EventManager.AddListener(Constants.TypedEvents.OnChangedArmament, OnChangedArmament);
+			MenuEvents.Instance.OnChangedArmament += OnChangedArmament;
 		}
 
 		private void OnDisable()
 		{
-			EventManager.RemoveListener(Constants.TypedEvents.OnChangedArmament, OnChangedArmament);
+			MenuEvents.Instance.OnChangedArmament -= OnChangedArmament;
 		}
 
 		private void OnChangedArmament()
@@ -93,7 +93,7 @@ namespace Armament.MainMenu
 			ArmamentConfigManager.GetConfig().SetArmament(_armamentSo);
 			ArmamentConfigManager.Instance.Save();
 			Selected = true;
-			EventManager.TriggerEvent(Constants.TypedEvents.OnChangedArmament);
+			MenuEvents.Instance.FireOnChangedArmament();
 		}
 
 		public void OnPointerEnter(PointerEventData eventData)

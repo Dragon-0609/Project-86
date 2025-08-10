@@ -64,7 +64,6 @@ public static class Constants
     /// </remarks>
     public static class TypedEvents
     {
-        public static string OnChangedArmament => "OnChangedArmament";
         public static class Auth
         {
             public const string OnLoginSuccess = "OnLoginSuccess";
