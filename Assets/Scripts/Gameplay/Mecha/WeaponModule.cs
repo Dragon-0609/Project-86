@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Armament.Shared;
 using Cinemachine;
 using ScriptableObjects;
 using UI;
@@ -253,6 +254,8 @@ namespace Gameplay.Mecha
 
         private void OnFire()
         {
+            if (Type == WeaponType.Secondary && ArmamentConfigManager.GetConfig().CurrentArmament != ArmamentType.MachineGun) return;
+            
             _isHeld = !_isHeld;
             if (canFire && _currentAmmoRemaining > 0)
             {
