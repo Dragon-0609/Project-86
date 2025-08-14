@@ -31,6 +31,7 @@ namespace Armament.MainMenu
 			{
 				InitCells();
 			}
+			MenuEvents.Instance.FireOnOpenedHangar();
 		}
 		
 		private void InitCells()
@@ -55,7 +56,7 @@ namespace Armament.MainMenu
 		
 		public void OnClosed()
 		{
-			
+			MenuEvents.Instance.FireOnClosedHangar();
 		}
 		
 	}

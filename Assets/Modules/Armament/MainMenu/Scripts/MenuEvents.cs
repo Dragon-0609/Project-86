@@ -8,6 +8,8 @@ namespace Armament.MainMenu
 
 		public event Action<TabSwitcher> OnTabChanged;
 		public event Action OnChangedArmament;
+		public event Action OnOpenedHangar;
+		public event Action OnClosedHangar;
 		
 		private void Awake()
 		{
@@ -27,6 +29,16 @@ namespace Armament.MainMenu
 		public void FireOnChangedArmament()
 		{
 			OnChangedArmament?.Invoke();
+		}
+
+		public void FireOnOpenedHangar()
+		{
+			OnOpenedHangar?.Invoke();
+		}
+
+		public void FireOnClosedHangar()
+		{
+			OnClosedHangar?.Invoke();
 		}
 	}
 }

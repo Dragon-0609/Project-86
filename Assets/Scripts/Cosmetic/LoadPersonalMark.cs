@@ -44,6 +44,31 @@ namespace Cosmetic
             //StartCoroutine(DisplayAllPM());
         }
 
+
+        private void OnEnable()
+        {
+            EventManager.AddListener(Constants.TypedEvents.OnChangedPersonalMark, OnChangedPersonalMark);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(Constants.TypedEvents.OnChangedPersonalMark, OnChangedPersonalMark);
+        }
+        private void OnChangedPersonalMark(object mark)
+        {
+            PersonalMarkSO markSo;
+            if (mark is PersonalMarkSO personalMarkSo && personalMarkSo != null)
+            {
+                markSo = personalMarkSo;
+            }else
+            {
+                markSo = _configSo.PersonalMark;
+            }
+            
+            _material.SetTexture(BaseMap, markSo.image);
+            _material.mainTexture = markSo.image;
+        }
+        
         IEnumerator DisplayAllPM()
         {
             var allPm = Resources.LoadAll<PersonalMarkSO>("ScriptableObjects/Skins/PersonalMarks/");

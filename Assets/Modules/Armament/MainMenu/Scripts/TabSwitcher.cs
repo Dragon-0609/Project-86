@@ -12,8 +12,12 @@ namespace Armament.MainMenu
 		[SerializeField] private Color DisabledColor;
 		[SerializeField] private bool IsEnabledByDefault;
 
+		[SerializeField] private TabType TabType;
+		
 		private bool _isEnabled = false;
 
+		public TabType Type => TabType;
+		
 		private void Start()
 		{
 			_isEnabled = IsEnabledByDefault;
